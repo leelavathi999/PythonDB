@@ -15,12 +15,12 @@ class Item(ItemBase):
     owner_id: int
 
     class Config:
-        orm_mode = True  # To tell Pydantic to work with ORM models
+        orm_mode = True 
 
 class UserBase(BaseModel):
     name: str
     email: str
-    # password: str 
+
 
 class UserCreate(UserBase):
     pass
@@ -35,6 +35,5 @@ class User(UserBase):
     items: List[Item] = []
 
     class Config:
-        orm_mode = True  # To tell Pydantic to work with ORM models
-
+        orm_mode = True  
     

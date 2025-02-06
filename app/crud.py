@@ -29,7 +29,7 @@ def update_user(db: Session, user_id: int, user_update: schemas.UserUpdate):
     if user_update.email:
         db_user.email = user_update.email
     if user_update.password:
-        db_user.hashed_password = security.hash_password(user_update.password)  # Hash new password
+        db_user.hashed_password = security.hash_password(user_update.password)  
 
     db.commit()
     db.refresh(db_user)
