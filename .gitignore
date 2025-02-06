@@ -1,0 +1,36 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# IDE/Editor files (e.g., VSCode, PyCharm)
+.vscode/
+
+# Logs
+*.log
+
+# Database files (for SQLite or other local DBs)
+*.sqlite3
+*.db
+*.sqlite
+
+
+# Alembic versioning files
+alembic/versions/
+alembic/__pycache__
+
+# Environment variables and secrets
+.env
+
+# Python package distribution
+*.egg
+*.egg-info/
+dist/
+build/
+# Local configuration files (e.g., local database URL, etc.)
+*.ini
