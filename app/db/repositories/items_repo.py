@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Session
-from .. import models, schemas
+from app.db.models.item_model import Item
+from app.schemas.item_schema import ItemCreate, ItemUpdate, Item as ItemSchema
 
 # Create a new item
-def create_item(db: Session, item: schemas.ItemCreate, user_id: int):
-    db_item = models.Item(name=item.name, description=item.description, owner_id=user_id)
+def create_item(db: Session, item: ItemCreate, user_id: int):
+    db_item = Item(name=item.name, description=item.description, owner_id=user_id)
     db.add(db_item)
     db.commit()
     db.refresh(db_item)
@@ -11,11 +12,11 @@ def create_item(db: Session, item: schemas.ItemCreate, user_id: int):
 
 # Get items by user ID
 def get_items_by_user(db: Session, user_id: int):
-    return db.query(models.Item).filter(models.Item.owner_id == user_id).all()
+    return db.query(Item).filter(Item.owner_id == user_id).all()
 
 # Update item by item ID
-def update_item(db: Session, item_id: int, item_update: schemas.ItemUpdate):
-    db_item = db.query(models.Item).filter(models.Item.id == item_id).first()
+def update_item(db: Session, item_id: int, item_update: ItemUpdate):
+    db_item = db.query(Item).filter(Item.id == item_id).first()
     if not db_item:
         return None
     db_item.name = item_update.name or db_item.name
@@ -27,7 +28,7 @@ def update_item(db: Session, item_id: int, item_update: schemas.ItemUpdate):
 
 # Delete item by item ID
 def delete_item(db: Session, item_id: int):
-    db_item = db.query(models.Item).filter(models.Item.id == item_id).first()
+    db_item = db.query(Item).filter(Item.id == item_id).first()
     if not db_item:
         return None
     db.delete(db_item)
@@ -36,4 +37,4 @@ def delete_item(db: Session, item_id: int):
 
 # Get all items
 def get_all_items(db: Session):
-    return db.query(models.Item).all()
+    return db.query(Item).all()
