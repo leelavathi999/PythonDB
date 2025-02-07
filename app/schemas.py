@@ -20,10 +20,11 @@ class Item(ItemBase):
 class UserBase(BaseModel):
     name: str
     email: str
-
+    
 
 class UserCreate(UserBase):
-    pass
+    password: str
+
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None
